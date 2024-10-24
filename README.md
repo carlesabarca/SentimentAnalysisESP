@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 title: SentimentAnalysisESP
 emoji: 🏆
@@ -12,3 +13,7 @@ short_description: Ejemplo de análisis de sentimientos usando DistilBERTO
 ---
 
 Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+=======
+# SentimentAnalysisESP
+Repositorio para el proyecto de ejemplo de DistilBETO
+>>>>>>> d97b3d1 (Initial commit)

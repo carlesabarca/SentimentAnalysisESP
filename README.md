@@ -1,12 +1,10 @@
-# SentimentAnalysisESP
 ---
 title: "Análisis de Sentimientos con DistilBETO"
-emoji: "🔍"
-colorFrom: "indigo"
-colorTo: "blue"
+emoji: "📊"
+colorFrom: "purple"
+colorTo: "orange"
 sdk: "gradio"
+sdk_version: "3.0"
 app_file: "app.py"
 pinned: false
 ---
-Repositorio para el proyecto de ejemplo de DistilBETO de análisis de sentimiento
-

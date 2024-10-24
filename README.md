@@ -15,6 +15,6 @@ Este proyecto utiliza el modelo DistilBETO para analizar sentimientos en textos 
 
 ## Cómo usar
 
-1. Ingresa un texto en español en el campo de entrada.
+1. Ingresa un texto en español en el campo de entrada o bien selecciona un PDF.
 2. Presiona "Submit" para analizar el sentimiento del texto.
 3. El resultado mostrará la categoría de sentimiento y la puntuación correspondiente.

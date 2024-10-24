@@ -1,25 +1,32 @@
 import gradio as gr
 from transformers import pipeline
 
-# Cargar el modelo DistilBETO
-sentiment_analysis = pipeline(
-    "sentiment-analysis",
-    model="nlptown/bert-base-multilingual-uncased-sentiment"
-)
+# Cargar el modelo DistilBETO para análisis de sentimientos
+modelo = "finiteautomata/beto-sentiment-analysis"
+sentiment_analysis = pipeline("sentiment-analysis", model=modelo, tokenizer=modelo)
 
-# Definir la función de análisis de sentimientos
-def analyze_sentiment(text):
-    results = sentiment_analysis(text)
-    return f"Label: {results[0]['label']}, Score: {results[0]['score']}"
+def analizar_sentimiento(texto):
+    resultado = sentiment_analysis(texto)[0]
+    label = resultado['label']
+    score = resultado['score']
 
-# Configurar la interfaz de Gradio
+    # Determinar si es positivo, negativo o neutro
+    if label == 'NEG':
+        sentimiento = "Negativo"
+    elif label == 'NEU':
+        sentimiento = "Neutro"
+    else:
+        sentimiento = "Positivo"
+
+    return f"Sentimiento: {sentimiento}, Confianza: {score:.2f}"
+
+# Interfaz Gradio
 demo = gr.Interface(
-    fn=analyze_sentiment,
+    fn=analizar_sentimiento,
     inputs="text",
     outputs="text",
     title="Análisis de Sentimientos con DistilBETO",
-    description="Ingrese un texto en español para analizar su sentimiento."
+    description="Ingrese un texto en español para analizar su sentimiento usando DistilBETO."
 )
 
-# Lanzar la aplicación
 demo.launch()

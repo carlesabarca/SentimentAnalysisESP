@@ -49,7 +49,7 @@ with gr.Blocks() as app:
         text_input = gr.Textbox(label="Ingrese texto para análisis")
         text_button = gr.Button("Analizar texto")
         text_output = gr.Label(label="Resultado del análisis")
-        slider_output = gr.Slider(label="Nivel de sentimiento", minimum=0, maximum=100, interactive=False)
+        slider_output = gr.Slider(label="Nivel de confianza en el resultado", minimum=0, maximum=100, interactive=False)
 
         text_button.click(text_analysis, inputs=text_input, outputs=[text_output, slider_output])
 

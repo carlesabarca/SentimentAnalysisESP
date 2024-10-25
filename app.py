@@ -2,6 +2,9 @@ import gradio as gr
 from transformers import pipeline
 import PyPDF2
 
+# Mostrar versión de Gradio
+print(f"Versión de Gradio instalada: {gr.__version__}")
+
 # Cargar el modelo de análisis de sentimientos
 sentiment_analysis = pipeline("sentiment-analysis", model="nlptown/bert-base-multilingual-uncased-sentiment")
 
@@ -55,7 +58,7 @@ with gr.Blocks() as app:
 
     with gr.Column():
         gr.Markdown("### Análisis de PDF")
-        pdf_input = gr.File(label="Subir PDF para análisis", file_types=[".pdf"])
+        pdf_input = gr.File(label="Subir PDF para análisis")
         pdf_button = gr.Button("Analizar PDF")
 
         pdf_button.click(pdf_analysis, inputs=pdf_input, outputs=[text_output, slider_output])

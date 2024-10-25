@@ -22,7 +22,6 @@ def analyze_text(input_text):
     else:
         sentiment_label = "Muy positivo"
 
-    # Devolver el resultado con el nivel de confianza
     return f"{sentiment_label} ({score}%)", score
 
 def analyze_pdf(pdf_file):
@@ -34,15 +33,6 @@ def analyze_pdf(pdf_file):
     return analyze_text(text)
 
 # Interfaz de Gradio
-text_input = gr.Textbox(label="Ingrese texto para análisis")
-pdf_input = gr.File(label="Subir PDF para análisis", file_types=[".pdf"])
-
-text_output = gr.Label(label="Resultado del análisis")
-slider_output = gr.Slider(label="Nivel de sentimiento", minimum=0, maximum=100, interactive=False)
-
-text_button = gr.Button("Analizar texto")
-pdf_button = gr.Button("Analizar PDF")
-
 def text_analysis(input_text):
     sentiment, score = analyze_text(input_text)
     return sentiment, score
@@ -53,21 +43,20 @@ def pdf_analysis(pdf_file):
 
 with gr.Blocks() as app:
     gr.Markdown("## Análisis de Sentimientos con DistilBETO")
-    
+
     with gr.Column():
         gr.Markdown("### Análisis de Texto")
-        text_input.render()
-        text_button.render()
-        text_output.render()
-        slider_output.render()
+        text_input = gr.Textbox(label="Ingrese texto para análisis")
+        text_button = gr.Button("Analizar texto")
+        text_output = gr.Label(label="Resultado del análisis")
+        slider_output = gr.Slider(label="Nivel de sentimiento", minimum=0, maximum=100, interactive=False)
 
         text_button.click(text_analysis, inputs=text_input, outputs=[text_output, slider_output])
 
+    with gr.Column():
         gr.Markdown("### Análisis de PDF")
-        pdf_input.render()
-        pdf_button.render()
-        text_output.render()
-        slider_output.render()
+        pdf_input = gr.File(label="Subir PDF para análisis", file_types=[".pdf"])
+        pdf_button = gr.Button("Analizar PDF")
 
         pdf_button.click(pdf_analysis, inputs=pdf_input, outputs=[text_output, slider_output])
 

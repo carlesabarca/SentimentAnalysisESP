@@ -1,6 +1,10 @@
 import gradio as gr
 from transformers import pipeline
 from PyPDF2 import PdfReader
+import logging
+
+# Imprimir la versión de Gradio en los logs
+logging.info(f"Versión de Gradio instalada: {gr.__version__}")
 
 # Cargar el modelo de DistilBETO
 sentiment_analysis = pipeline("sentiment-analysis", 
